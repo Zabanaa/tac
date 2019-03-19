@@ -1,60 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-int main(int argc, char *argv[])
+void print_usage_and_exit(void)
 {
-    char *filename;
-    FILE *file_to_read;
-    char *file_content_buf;
-    long file_size;
+    printf("Usage: tac [FILENAME]\nWhere FILENAME is a path to a file you wish to concatenate\n");
+    exit(EXIT_FAILURE);
+}
 
-    // if nothing is passed, print the usage
-    if(argc < 2)
-    {
-        printf("Usage: tac [FILENAME]\nWhere FILENAME is a path to a file you wish to concatenate\n");
-        exit(EXIT_FAILURE);
-    }
+FILE* open_file(char *filename)
+{
+    FILE *fd;
+    fd = fopen(filename, "r");
 
-    // parse command line arguments to extract the filename
-    filename = argv[1];
-
-    // attempt to open the file
-    file_to_read = fopen(filename, "r");
-
-    // if an error occurs 
-    // exit with an error message 
-
-    if(file_to_read == NULL)
+    if(fd == NULL)
     {
         printf("tac: %s: No such file or directory\n", filename);
         exit(EXIT_FAILURE);
     }
 
-    // get the file size
-    fseek(file_to_read, 0L, SEEK_END);
-    file_size = ftell(file_to_read);
-    rewind(file_to_read);
+    return fd;
+}
 
-    // then malloc
-    file_content_buf = malloc(sizeof(char) * (file_size + 1));
-
-    // if malloc fails, exit
-    if(file_content_buf == NULL)
+void tac(char buf[], size_t bufsize, FILE* fd)
+{
+    ssize_t total_bytes_read;
+    while((total_bytes_read = fread(buf, sizeof(char), bufsize + 1, fd) ) != 0)
     {
-        printf("Error allocating memory.\n");
-        exit(EXIT_FAILURE);
+        buf[total_bytes_read] = '\0';
+        fprintf(stdout, "%s", buf);
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    char file_content_buf[8096];
+    FILE *file_to_read;
+
+    // if nothing is passed, print the usage
+    if(argc < 2)
+    {
+        print_usage_and_exit();
     }
 
-    // read the file into the buffer
-    fread(file_content_buf, sizeof(char), file_size, file_to_read);
+    // attempt to open the file
+    file_to_read = open_file(argv[1]);
 
-    fprintf(stdout, "%s\n", file_content_buf);
+    // read the file in chunks
+    tac(file_content_buf, sizeof(file_content_buf), file_to_read);
 
-    free(file_content_buf);
+    // [x] breakup the code into smaller pieces
 
-    // then do the buffered thing
-    // aka read until the file size has been reached
+    // TODO:
+    // [] do this for multiple files 
+    // [] handle other flags
+    // [] handle pootential errors with fread
+    // [] then lookup a better a way to do it
+
+    // [] create a makefile
+    // [] name the executable *.out and add it to the .gitignore list
+
+    // [] push 
 
     // close the file
     fclose(file_to_read);
