@@ -48,16 +48,11 @@ int main(int argc, char *argv[])
     // read the file in chunks
     tac(file_content_buf, sizeof(file_content_buf), file_to_read);
 
-    // [x] breakup the code into smaller pieces
-
     // TODO:
     // [] do this for multiple files 
     // [] handle other flags
     // [] handle pootential errors with fread
     // [] then lookup a better a way to do it
-
-    // [] create a makefile
-    // [] name the executable *.out and add it to the .gitignore list
 
     // [] push 
 
