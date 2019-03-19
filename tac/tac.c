@@ -50,10 +50,13 @@ int main(int argc, char *argv[])
 
     // TODO:
     // [] do this for multiple files 
-    // [] handle other flags
+    // [] handle standard input 
+    // [] handle -E (to add a $ at the end of each line) [read each buffer line by line and append a $]   
+    // [] handle -b (same as above => but prepend the line number )
     // [] handle pootential errors with fread
     // [] then lookup a better a way to do it
-
+    // ask for a code review on discord ? 
+    // write to a buffer OR use fprintf ? ask the question
     // [] push 
 
     // close the file
