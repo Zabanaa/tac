@@ -1,4 +1,4 @@
-#include "tac.h"
+#include "src/tac.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,15 +18,15 @@ int main(int argc, char *argv[])
     tac(file_content_buf, sizeof(file_content_buf), file_to_read);
 
     // TODO:
-    // [] do this for multiple files 
-    // [] handle standard input 
-    // [] handle -E (to add a $ at the end of each line) [read each buffer line by line and append a $]   
+    // [] do this for multiple files
+    // [] handle standard input
+    // [] handle -E (to add a $ at the end of each line) [read each buffer line by line and append a $]
     // [] handle -b (same as above => but prepend the line number )
     // [] handle pootential errors with fread
     // [] then lookup a better a way to do it
-    // ask for a code review on discord ? 
+    // ask for a code review on discord ?
     // write to a buffer OR use fprintf ? ask the question
-    // [] push 
+    // [] push
 
     // close the file
     fclose(file_to_read);
