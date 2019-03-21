@@ -1,7 +1,11 @@
-objects=src/tac.o
+CC=clang
+EXE=tac.out
+SOURCE=main.c \
+	   src/tac.c
+OBJECTS=src/*.o
 
-tac: main.c $(objects)
-	clang main.c $(objects) -o tac.out
+$(EXE):
+	$(CC) $(SOURCE) -o $(EXE)
 
 clean:
-	- rm $(objects) *.out
+	- rm *.out
