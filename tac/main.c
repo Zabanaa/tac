@@ -18,12 +18,13 @@ int main(int argc, char *argv[])
     tac(file_content_buf, sizeof(file_content_buf), file_to_read);
 
     // TODO:
-    // [] do this for multiple files
-    // [] handle standard input
+    // [] do this for multiple files while loop
+    // [] handle standard input (aka when the user puts a -) spit it back out
     // [] handle -E (to add a $ at the end of each line) [read each buffer line by line and append a $]
     // [] handle -b (same as above => but prepend the line number )
+
     // [] handle pootential errors with fread
-    // [] then lookup a better a way to do it
+    // [] then lookup a better a way to do it (more efficient)
     // ask for a code review on discord ?
     // write to a buffer OR use fprintf ? ask the question
     // [] push

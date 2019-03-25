@@ -1,8 +1,8 @@
 CC=clang
 EXE=tac.out
-SOURCE=main.c \
-	   src/tac.c
-OBJECTS=src/*.o
+
+SOURCE=main.c $(wildcard src/*.c)
+OBJECTS=$(wildcard src/*.o)
 
 $(EXE):
 	$(CC) $(SOURCE) -o $(EXE)
